@@ -4,16 +4,20 @@
 """
 
 import json
+import os
 import subprocess
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # 台北時區
 TAIPEI_TZ = timezone(timedelta(hours=8))
-DATA_DIR = Path("/home/node/.openclaw/workspace")
+
+# 可配置的路徑（支援環境變數）
+MAX_CONTEXT = 200000
+DATA_DIR = Path(os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace"))
 DAILY_FILE = DATA_DIR / "daily_usage.json"
 CURRENT_FILE = DATA_DIR / "current_session_usage.json"
-OPENCLAW_BIN = "/home/node/bin/openclaw"
+OPENCLAW_BIN = os.environ.get("OPENCLAW_BIN", "/home/node/bin/openclaw")
 
 
 def get_session_usage() -> dict:
@@ -29,7 +33,10 @@ def get_session_usage() -> dict:
         if result.returncode != 0:
             return {"error": f"CLI error: {result.stderr}"}
         
-        data = json.loads(result.stdout)
+        try:
+            data = json.loads(result.stdout)
+        except json.JSONDecodeError as e:
+            return {"error": f"Invalid JSON response: {e}"}
         
         sessions = data.get("sessions", [])
         
@@ -44,8 +51,8 @@ def get_session_usage() -> dict:
             total = s.get("totalTokens", 0)
             context_t = s.get("contextTokens", 0)
             
-            # 計算 Context 使用率（假設最大為 200K）
-            context_pct = round((total / context_t * 100), 2) if context_t > 0 else 0
+            # 計算 Context 使用率（相對於最大 Context 200K）
+            context_pct = round((context_t / MAX_CONTEXT * 100), 2) if context_t > 0 else 0
             
             session_details.append({
                 "session_key": s.get("key"),
