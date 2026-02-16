@@ -13,11 +13,15 @@ from pathlib import Path
 TAIPEI_TZ = timezone(timedelta(hours=8))
 
 # 可配置的路徑（支援環境變數）
-MAX_CONTEXT = 200000
+MAX_CONTEXT = 204800
 DATA_DIR = Path(os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace"))
 DAILY_FILE = DATA_DIR / "daily_usage.json"
 CURRENT_FILE = DATA_DIR / "current_session_usage.json"
+REPORTS_DIR = DATA_DIR / "reports"
 OPENCLAW_BIN = os.environ.get("OPENCLAW_BIN", "/home/node/bin/openclaw")
+
+# 確保 reports 目錄存在
+REPORTS_DIR.mkdir(exist_ok=True)
 
 
 def get_session_usage() -> dict:
@@ -220,7 +224,20 @@ def format_report() -> str:
             lines.append(f"  - {s.get('session_key', 'N/A')}: {s.get('context_pct', 0)}%")
         lines.append("💡 建議使用 /new 開新 session")
     
-    return "\n".join(lines)
+    report_content = "\n".join(lines)
+    
+    # 儲存報告到 reports 目錄
+    timestamp = datetime.now(TAIPEI_TZ).strftime("%Y%m%d_%H%M%S")
+    report_file = REPORTS_DIR / f"report_{timestamp}.md"
+    with open(report_file, "w", encoding="utf-8") as f:
+        f.write(report_content)
+    
+    # 也儲存最新報告為 latest.md
+    latest_file = REPORTS_DIR / "latest.md"
+    with open(latest_file, "w", encoding="utf-8") as f:
+        f.write(report_content)
+    
+    return report_content
 
 
 if __name__ == "__main__":
