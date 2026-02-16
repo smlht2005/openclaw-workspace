@@ -46,10 +46,10 @@ def get_session_usage() -> dict:
         total_output = 0
         
         for s in sessions:
-            input_t = s.get("inputTokens", 0)
-            output_t = s.get("outputTokens", 0)
-            total = s.get("totalTokens", 0)
-            context_t = s.get("contextTokens", 0)
+            input_t = s.get("inputTokens", 0) or 0
+            output_t = s.get("outputTokens", 0) or 0
+            total = s.get("totalTokens", 0) or 0
+            context_t = s.get("contextTokens", 0) or 0
             
             # 計算 Context 使用率（相對於最大 Context 200K）
             context_pct = round((context_t / MAX_CONTEXT * 100), 2) if context_t > 0 else 0
@@ -169,28 +169,56 @@ def format_report() -> str:
     
     trend = get_trend(7)
     
-    # 取得第一個 session 的詳細資料
+    # 取得所有 sessions
     sessions = usage.get("sessions", [])
     model = sessions[0].get("model", "N/A") if sessions else "N/A"
-    context_pct = sessions[0].get("context_pct", 0) if sessions else 0
+    
+    # 計算最高 Context
+    max_context = max((s.get("context_pct", 0) for s in sessions), default=0)
+    max_context_session = max(sessions, key=lambda s: s.get("context_pct", 0))
     
     lines = [
         "📊 Token 使用報告",
         f"⏰ {usage['timestamp']} (台北)",
-        f"🤖 {model}",
+        f"🤖 模型: {model}",
         f"📱 Sessions: {usage['active_sessions']}",
         f"🧮 Input: {usage.get('total_input_tokens', 0):,}",
         f"🧮 Output: {usage.get('total_output_tokens', 0):,}",
         f"🧮 Total: {usage['total_tokens']:,}",
-        f"📊 Context: {context_pct:.1f}%",
+        f"📊 Context: {max_context:.1f}%",
         "",
-        "📈 趨勢"
+        "📈 趨勢（最近 7 天）"
     ]
     
     for t in trend["trend"]:
         tokens = t["total_tokens"]
-        bar = "█" * min(int(tokens / 1000), 15)
+        bar = "█" * min(int(tokens / 10000), 15)
         lines.append(f"{t['date'][-5:]} {bar} {tokens:,}")
+    
+    # Session 詳細列表
+    lines.append("")
+    lines.append("📱 Session 詳情")
+    for s in sessions:
+        key = s.get("session_key", "N/A")
+        # 簡化 session key 顯示
+        if "cron:" in key:
+            display_key = "Cron"
+        elif "telegram:" in key:
+            display_key = "Telegram"
+        else:
+            display_key = "Main"
+        ctx = s.get("context_pct", 0)
+        total = s.get("total_tokens", 0)
+        lines.append(f"  • {display_key}: {total:,} tokens, Context {ctx:.1f}%")
+    
+    # 如果有 Context > 80% 的 session，給出警告
+    high_context_sessions = [s for s in sessions if s.get("context_pct", 0) > 80]
+    if high_context_sessions:
+        lines.append("")
+        lines.append("⚠️ 注意：以下 Session Context 過高")
+        for s in high_context_sessions:
+            lines.append(f"  - {s.get('session_key', 'N/A')}: {s.get('context_pct', 0)}%")
+        lines.append("💡 建議使用 /new 開新 session")
     
     return "\n".join(lines)
 
