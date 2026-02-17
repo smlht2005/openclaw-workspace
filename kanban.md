@@ -24,11 +24,11 @@
 - **T002** - Telegram 報告發送（4次/天）
 
 ### 🔵 Review 待檢視
-- **T001** - JSON 持久化 → [檢視](./review/T001-json-persistence.md)
 - **T003** - 每日 Session 追蹤 → [檢視](./review/T003-session-tracker.md)
 - **T006** - Scrum Kanban Skill → [檢視](./review/T006-scrum-kanban.md)
 
 ### ✅ Done 已完成
+- **T001** - JSON 持久化 (2026-02-15)
 - **T007** - Bug Tracker (2026-02-16)
 - **T008** - Bug Tracker Skill (2026-02-16)
 
