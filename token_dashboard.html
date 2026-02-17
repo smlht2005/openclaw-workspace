@@ -1,0 +1,172 @@
+✅ 已載入 3 筆記錄
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      padding: 24px;
+      color: #fff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 28px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .stat-item {
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4ade80;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    .progress-bar {
+      height: 24px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4ade80, #22d3ee);
+      border-radius: 12px;
+      transition: width 0.5s ease;
+    }
+    .model-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .model-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    .model-name {
+      flex: 1;
+      font-weight: 600;
+    }
+    .model-stats {
+      text-align: right;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .model-cost {
+      color: #fbbf24;
+      font-weight: bold;
+    }
+    .emoji { font-size: 24px; }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #64748b;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Token 使用量儀表板</h1>
+    
+    <!-- 總覽卡片 -->
+    <div class="card">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">3</div>
+          <div class="stat-label">總請求次數</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">6,250</div>
+          <div class="stat-label">總 Tokens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4,700</div>
+          <div class="stat-label">Input Tokens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$0.0151</div>
+          <div class="stat-label">總費用 (USD)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 按模型分布 -->
+    <div class="card">
+      <h2 style="margin-bottom: 16px;">🏭 按模型分布</h2>
+      <div class="model-list">
+
+        <div class="model-item">
+          <span class="emoji">🤖</span>
+          <div class="model-name">gpt-4o</div>
+          <div class="model-stats">
+            1,500 in / 500 out<br>
+            <span class="model-cost">$0.0150</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 32.0%"></div>
+        </div>
+
+        <div class="model-item">
+          <span class="emoji">⚡</span>
+          <div class="model-name">minimax-m2.5</div>
+          <div class="model-stats">
+            3,000 in / 1,000 out<br>
+            <span class="model-cost">$0.0000</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 64.0%"></div>
+        </div>
+
+        <div class="model-item">
+          <span class="emoji">🤖</span>
+          <div class="model-name">gpt-4o-mini</div>
+          <div class="model-stats">
+            200 in / 50 out<br>
+            <span class="model-cost">$0.0001</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 4.0%"></div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="footer">
+      更新時間: 2026-02-15 18:50:00
