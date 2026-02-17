@@ -19,16 +19,18 @@
 ### 🟡 To Do 待處理
 - **T004** - 網頁儀表板 [P2]
 - **T005** - 更多模型支援 [P2]
+- **T009** - Context 從 config 讀取 [P3]
+- **T010** - daily_usage.json 歸檔機制 [P3]
 
 ### 🟢 In Progress 進行中
 - **T002** - Telegram 報告發送（4次/天）
 
 ### 🔵 Review 待檢視
-- **T003** - 每日 Session 追蹤 → [檢視](./review/T003-session-tracker.md)
 - **T006** - Scrum Kanban Skill → [檢視](./review/T006-scrum-kanban.md)
 
 ### ✅ Done 已完成
 - **T001** - JSON 持久化 (2026-02-15)
+- **T003** - 每日 Session 追蹤 (2026-02-17)
 - **T007** - Bug Tracker (2026-02-16)
 - **T008** - Bug Tracker Skill (2026-02-16)
 
