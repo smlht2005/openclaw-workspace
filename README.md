@@ -78,18 +78,149 @@ Session 重新啟動時：
 任務狀態流程：
 
 ```
-📋 Todo → 🔄 In Progress → 🔍 Review → ✅ Done
+📋 Todo → 🔄 In Progress → 🔍 Review → ✅ Done → 📦 Archive
 ```
 
-**優先級**: P1 (緊急) > P2 (重要) > P3 (普通) > P4 (低)
+#### 優先級
+| 等級 | 標記 | 意義 |
+|------|------|------|
+| P1 | 🔴 | 緊急重要 |
+| P2 | 🟡 | 重要 |
+| P3 | 🟢 | 普通 |
+| P4 | ⚪ | 低優先級 |
 
-**狀態標記**:
-- 📋 Todo / To Do
-- 🔄 In Progress
-- 🔍 Review (待檢視)
-- ✅ Done
-- ⚠️ Blocked
-- 🔴 P1
+#### 狀態標記
+| 狀態 | 標記 | 說明 |
+|------|------|------|
+| 待處理 | 📋 Todo | 新建任務 |
+| 進行中 | 🔄 In Progress | 開發中 |
+| 待檢視 | 🔍 Review | 等待 Review |
+| 已完成 | ✅ Done | Review 通過 |
+| 歸檔 | 📦 Archive | 已歸檔 |
+| 阻塞 | ⚠️ Blocked | 被阻塞 |
+
+---
+
+#### 📋 Kanban 完整流程
+
+**Step 1: 建立任務 (Todo)**
+```
+1. 在 todos/{專案}.md 新增任務
+2. 狀態標記為 📋 Todo
+3. 指定優先級 (P1-P4)
+4. 更新 kanban.md 的 Summary + Detail
+```
+
+**Step 2: 開始開發 (In Progress)**
+```
+1. 狀態改為 🔄 In Progress
+2. 更新 kanban.md
+3. 開始實作
+```
+
+**Step 3: 提交 Review**
+```
+1. 狀態改為 🔍 Review
+2. 在 review/ 建立 T00X-任務名稱.md
+3. 填寫 Review 檢查清單
+4. 更新 kanban.md
+```
+
+**Step 4: Review 通過 (Done)**
+```
+1. 檢視通過 → 狀態改為 ✅ Done
+2. 移動 review 檔案到 archive/
+3. 更新 kanban.md
+```
+
+**Step 5: 歸檔 (Archive)**
+```
+1. 已完成的任務可移到 archive/
+2. 維持 ✅ Done 標記
+3. 檔案移到 archive/ 目錄
+```
+
+---
+
+#### 📁 檔案位置
+
+| 類型 | 路徑 |
+|------|------|
+| 看板 | `kanban.md` |
+| 任務清單 | `todos/{專案}.md` |
+| 待審查 | `review/T00X-任務名稱.md` |
+| 已歸檔 | `archive/T00X-任務名稱.md` |
+
+---
+
+#### 📝 Review 範本
+
+```markdown
+# T00X 任務名稱 - Review
+
+## 任務資訊
+- **ID**: T00X
+- **任務**: 任務名稱
+- **優先級**: P2
+- **狀態**: 🔍 Review
+- **完成日期**: YYYY-MM-DD
+
+## 實作摘要
+- 完成功能 1
+- 完成功能 2
+
+## 檢視項目
+- [ ] 功能正常運作
+- [ ] 程式碼品質良好
+- [ ] 已更新相關文件
+
+## 檢視結果
+- [ ] ✅ 通過
+- [ ] ❌ 需修改
+
+## 備註
+```
+
+---
+
+#### ✅ 使用範例
+
+```bash
+# 1. 新建任務
+# 編輯 todos/my-project.md，加入：
+# - T010 - 新功能 [P2] 📋
+
+# 2. 開始開發
+# 狀態改為 🔄 In Progress
+
+# 3. 提交 Review
+# 狀態改為 🔍 Review
+# 建立 review/T010-new-feature.md
+
+# 4. Review 通過
+# 狀態改為 ✅ Done
+# 移動 T010-new-feature.md 到 archive/
+```
+
+---
+
+#### 📊 Kanban 看板檢視
+
+```bash
+# 查看目前看板
+cat kanban.md
+```
+
+看板範例：
+```
+| 狀態 | 數量 | 備註 |
+|------|------|------|
+| 🔴 P1 | 0 | 緊急 |
+| 🟡 To Do | 2 | 待處理 |
+| 🟢 In Progress | 1 | 進行中 |
+| 🔵 Review | 1 | 待檢視 |
+| ✅ Done | 3 | 已完成 |
+```
 
 ### 4. Bug 追蹤 (`bug-tracker`)
 
