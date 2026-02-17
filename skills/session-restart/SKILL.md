@@ -10,6 +10,15 @@ description: |
 
 當 session 重新啟動時，按照以下順序執行：
 
+## 0. 讀取上一次的 Startup Report (如有)
+
+```bash
+# 讀取上一次的 report (如有)
+read reports/session-startup-YYYYMMDD.md
+```
+
+如有上一次的 report，先輸出到 Telegram 告知用戶：「這是上次 session 的結尾報告」
+
 ## 1. 讀取 Memory + Ruler
 
 依序讀取以下檔案以恢復上下文：
@@ -73,6 +82,16 @@ session_status
 根據上下文產生個人化的歡迎訊息：
 - 如果有重要事項 → 直接告知
 - 如果沒什麼特別的 → 簡單問候 + "有什麼需要幫忙的？"
+
+## 6. 儲存 Report 到檔案
+
+將步驟 4 產生的 report 儲存到：
+
+```bash
+reports/session-startup-YYYYMMDD.md
+```
+
+這樣下次啟動時可以讀取上一次的 report。
 
 ---
 
