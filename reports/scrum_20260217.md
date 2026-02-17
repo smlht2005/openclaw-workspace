@@ -17,7 +17,3 @@
 ✅ 已完成
   • T007: Bug Tracker
   • T008: Bug Tracker Skill
-
-🐛 Open Bugs
-  🔴 BUG-001: Cron job execution timeout (01:00 UTC)
-  🟡 BUG-003: Telegram 報告只顯示 summary，缺少 detail
