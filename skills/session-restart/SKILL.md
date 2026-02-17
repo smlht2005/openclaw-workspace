@@ -10,11 +10,14 @@ description: |
 
 當 session 重新啟動時，按照以下順序執行：
 
-## 1. 讀取 Memory
+## 1. 讀取 Memory + Ruler
 
 依序讀取以下檔案以恢復上下文：
 
 ```bash
+# 讀取格式規範 (重要！)
+read ruler.md
+
 # 讀取長期記憶
 read MEMORY.md
 
@@ -54,11 +57,16 @@ session_status
 
 整合以上資訊，產出一份簡潔的 report 給使用者，包含：
 
-- 📅 日期/時間
+- 📅 日期/時間 **(台北時間 UTC+8)**
 - 📊 Session 狀態 (model, 使用量)
 - ⏰ 待處理的 cron jobs
 - 📝 最近的心得/筆記 (從 memory)
 - 🎯 提醒事項 (如果有)
+
+**務必遵守 ruler.md 的格式規範，特別是：**
+- 時間使用台北時間格式: `YYYY-MM-DD HH:MM (台北)`
+- 報告不使用表格
+- 使用 emoji 標記
 
 ## 5. 輸出歡迎訊息
 
