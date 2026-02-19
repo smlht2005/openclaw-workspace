@@ -1,0 +1,15 @@
+{
+  "bugs": [
+    {
+      "id": "BUG-001",
+      "title": "Cron Delivery Target Missing",
+      "status": "fixed",
+      "priority": "medium",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "description": "Cron Job delivery 設定導致 target missing 錯誤",
+      "solution": "刪除舊 Job 並重新建立"
+    }
+  ],
+  "updated_at": "2026-02-19T02:00:00Z"
+}

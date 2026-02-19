@@ -1,0 +1,131 @@
+{
+  "tasks": {
+    "T001": {
+      "id": "T001",
+      "title": "SecondBrainWeb 部署修復",
+      "description": "修復 Zeabur 部署問題，確保網站正常運作",
+      "status": "backlog",
+      "priority": "high",
+      "story_points": 3,
+      "created_at": "2026-02-17T03:02:56.798675",
+      "updated_at": "2026-02-17T03:45:05.383693",
+      "completed_at": null,
+      "sprint": "Sprint 1",
+      "tags": [
+        "deployment",
+        "zeabur"
+      ]
+    },
+    "T002": {
+      "id": "T002",
+      "title": "新增 Scrum 看板功能",
+      "description": "從 openclaw-assistant 複製並初始化 Scrum 系統",
+      "status": "todo",
+      "priority": "high",
+      "story_points": 5,
+      "created_at": "2026-02-17T03:02:56.799709",
+      "updated_at": "2026-02-17T03:03:46.746334",
+      "completed_at": null,
+      "sprint": "Sprint 1",
+      "tags": [
+        "feature"
+      ]
+    },
+    "T003": {
+      "id": "T003",
+      "title": "新增 Token 追蹤功能",
+      "description": "從 openclaw-assistant 複製並設定 Token 使用量追蹤",
+      "status": "todo",
+      "priority": "high",
+      "story_points": 5,
+      "created_at": "2026-02-17T03:02:56.801805",
+      "updated_at": "2026-02-17T03:03:46.747103",
+      "completed_at": null,
+      "sprint": "Sprint 1",
+      "tags": [
+        "feature"
+      ]
+    },
+    "T004": {
+      "id": "T004",
+      "title": "每日自動化報告",
+      "description": "整合 Scrum + Token 報告至 Cron Job",
+      "status": "done",
+      "priority": "medium",
+      "story_points": 3,
+      "created_at": "2026-02-17T03:02:56.804171",
+      "updated_at": "2026-02-19T01:20:00.000000",
+      "completed_at": "2026-02-19T01:20:00.000000",
+      "sprint": "Sprint 1",
+      "tags": [
+        "automation"
+      ]
+    },
+    "T005": {
+      "id": "T005",
+      "title": "SecondBrainServer 解耦",
+      "description": "將後端從前端解耦，部署 Fastify V2",
+      "status": "review",
+      "priority": "medium",
+      "story_points": 8,
+      "created_at": "2026-02-17T03:02:56.805991",
+      "updated_at": "2026-02-17T03:23:35.613784",
+      "completed_at": null,
+      "sprint": "Sprint 1",
+      "tags": [
+        "backend"
+      ]
+    },
+    "T006": {
+      "id": "T006",
+      "title": "OpenClaw 2026.2.17 新功能調查",
+      "description": "研究新版本功能並輸出報告",
+      "status": "done",
+      "priority": "medium",
+      "story_points": 5,
+      "created_at": "2026-02-18T23:23:26.534773",
+      "updated_at": "2026-02-19T01:20:00.000000",
+      "completed_at": "2026-02-19T01:20:00.000000",
+      "sprint": "Sprint 1",
+      "tags": [
+        "research",
+        "openclaw"
+      ]
+    },
+    "T007": {
+      "id": "T007",
+      "title": "將 todos JSON 遷移到 SQLite",
+      "description": "將 todos 和 bugs 從 JSON 檔案遷移到 SQLite 資料庫",
+      "status": "todo",
+      "priority": "high",
+      "story_points": 8,
+      "created_at": "2026-02-19T02:20:50Z",
+      "updated_at": "2026-02-19T02:20:50Z",
+      "completed_at": null,
+      "sprint": "Sprint 1",
+      "tags": [
+        "database",
+        "migration"
+      ]
+    }
+  },
+  "sprints": {
+    "Sprint 1": {
+      "name": "Sprint 1",
+      "goal": "SecondBrainWeb 開發與優化",
+      "start_date": "2026-02-17T03:02:56.798409",
+      "end_date": "2026-03-03T03:02:56.798409",
+      "task_ids": [
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007"
+      ],
+      "velocity": 0
+    }
+  },
+  "current_sprint": "Sprint 1"
+}
