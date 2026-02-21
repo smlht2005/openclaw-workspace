@@ -344,7 +344,7 @@ GMAIL_APP_PASSWORD=your-app-password
 
 ### 使用方式
 ```bash
-python3 email_service.py <收件人> <主旨> <內文> [附件路徑]
+python3 scripts/email_service.py <收件人> <主旨> <內文> [附件路徑]
 ```
 
 ### 範例
