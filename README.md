@@ -332,6 +332,87 @@ session_status
 
 ---
 
+## 📧 Email Service
+
+### 設定
+- 檔案: `.env`
+- 格式:
+```
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
+```
+
+### 使用方式
+```bash
+python3 email_service.py <收件人> <主旨> <內文> [附件路徑]
+```
+
+### 範例
+```bash
+python3 email_service.py "test@example.com" "Subject" "Body content"
+```
+
+---
+
+## 🎙️ TTS 語音服務
+
+### 設定位置
+- 檔案: `/home/node/.openclaw/openclaw.json`
+- 區塊: `messages.tts`
+
+### 完整設定範例
+```json
+{
+  "messages": {
+    "tts": {
+      "auto": "off",
+      "provider": "edge",
+      "edge": {
+        "enabled": true,
+        "voice": "zh-TW-HsiaoChenNeural",
+        "lang": "zh-TW"
+      }
+    }
+  }
+}
+```
+
+### 可用的中文聲音
+| 聲音代碼 | 說明 |
+|----------|------|
+| `zh-TW-HsiaoChenNeural` | 曉晨 (推薦) |
+| `zh-TW-HsiaoYuNeural` | 曉雨 |
+| `zh-CN-XiaoxiaoNeural` | 曉曉 (普通話) |
+
+### 發送語音指令
+```python
+tts(channel="telegram", text="要轉換的文字")
+message(action="send", filePath="/tmp/voice.mp3", asVoice="true")
+```
+
+---
+
+## 📊 Cron Jobs
+
+### 目前的定時任務
+| 任務 | 時間 (台灣) | 頻率 |
+|------|------------|------|
+| 黃金價格 | 10:00, 12:00 | 每天 |
+| 台股報價 (大同/長榮) | 10:00, 12:00 | 週一至週五 |
+| Scrum Report | 14:00 | 每天 |
+
+---
+
+## 📂 相關文檔
+
+| 檔案 | 說明 |
+|------|------|
+| `docs/tts_handbook.md` | TTS 完整設定手冊 |
+| `docs/voice_help.md` | Telegram 語音訊息指南 |
+| `email_service.py` | Email 發送服務 |
+
+---
+
 ## 📝 格式規範摘要
 
 | 項目 | 規範 |
@@ -344,4 +425,4 @@ session_status
 
 ---
 
-*最後更新: 2026-02-17*
+*最後更新: 2026-02-21*
