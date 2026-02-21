@@ -9,3 +9,5 @@ node_modules/
 *.db
 sqlite.db
 todos.db
+SecondBrainWeb/
+openclaw-voice/
