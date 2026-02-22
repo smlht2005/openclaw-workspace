@@ -5,20 +5,22 @@ Scrum 報告生成器
 """
 
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
-REPORTS_DIR = Path("/home/node/.openclaw/workspace/reports")
+WORKSPACE = Path(os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace"))
+REPORTS_DIR = WORKSPACE / "reports"
 REPORTS_DIR.mkdir(exist_ok=True)
 
 def load_todos():
     """載入 todos"""
-    with open("/home/node/.openclaw/workspace/todos/todos.json", "r", encoding="utf-8") as f:
+    with open(WORKSPACE / "todos" / "todos.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
 def load_bugs():
     """載入 bugs"""
-    with open("/home/node/.openclaw/workspace/bugs/issues.json", "r", encoding="utf-8") as f:
+    with open(WORKSPACE / "bugs" / "issues.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
 def format_scrum_report():

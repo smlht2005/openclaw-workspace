@@ -21,11 +21,15 @@ if os.path.exists(env_path):
 # Gmail SMTP 配置
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SENDER_EMAIL = env_vars.get("GMAIL_USER", "smlhtliu@gmail.com")
+SENDER_EMAIL = env_vars.get("GMAIL_USER", "")
 APP_PASSWORD = env_vars.get("GMAIL_APP_PASSWORD", "")
 
 def send_email(to_email, subject, body, attachment_path=None):
     """發送 Email"""
+    if not SENDER_EMAIL:
+        return False, "GMAIL_USER environment variable is required but not set"
+    if not APP_PASSWORD:
+        return False, "GMAIL_APP_PASSWORD environment variable is required but not set"
     try:
         msg = MIMEMultipart()
         msg['From'] = SENDER_EMAIL
