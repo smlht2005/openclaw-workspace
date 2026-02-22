@@ -1,0 +1,20 @@
+{
+  "bugs": [
+    {
+      "id": "BUG-004",
+      "title": "Cron Job Delivery 到 Telegram 失敗 - Unknown target",
+      "description": "Cron isolated session 的 delivery 機制發送到 Telegram 時失敗，錯誤訊息為 'Unknown target cron:xxx for Telegram'",
+      "severity": "high",
+      "status": "open",
+      "created_at": "2026-02-22",
+      "resolved_at": null,
+      "root_cause": "Cron isolated session 的 delivery 機制可能無法正確解析 to 參數",
+      "solution": "等待系統修復或使用 main session 取代 isolated session",
+      "affected_jobs": [
+        "黃金價格 10:00",
+        "黃金價格 12:00"
+      ],
+      "error_message": "Unknown target cron:xxx for Telegram. Hint: <chatId>"
+    }
+  ]
+}
