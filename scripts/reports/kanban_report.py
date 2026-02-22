@@ -11,12 +11,13 @@ Kanban 看板生成器
 
 import json
 import argparse
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
 # 設定
-WORKSPACE = Path("/home/node/.openclaw/workspace")
+WORKSPACE = Path(os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace"))
 TODOS_FILE = WORKSPACE / "todos" / "todos.json"
 BUGS_FILE = WORKSPACE / "bugs" / "issues.json"
 KANBAN_FILE = WORKSPACE / "kanban.md"

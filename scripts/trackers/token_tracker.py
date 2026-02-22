@@ -7,9 +7,10 @@ import json
 import os
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
 from typing import Optional, List
 
-DATA_FILE = "/home/node/.openclaw/workspace/token_usage.json"
+DATA_FILE = str(Path(os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace")) / "token_usage.json")
 
 # 常見模型的定價 (USD per 1M tokens)
 MODEL_PRICING = {
