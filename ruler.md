@@ -202,4 +202,36 @@ MM-DD ████████ {N}
 
 ---
 
+## 🔐 敏感資料處理規範 (非常重要！)
+
+### 原則
+1. **嚴禁 hardcode** - 所有密碼、API Token、私鑰不可寫死在程式碼中
+2. **存放 .env** - 敏感資訊必須存放在 `.env` 檔案
+3. **加入 .gitignore** - `.env` 必須加入 `.gitignore`
+4. **記錄在 ruler/memory** - 在 ruler.md 或 memory 註記有哪些敏感資訊（不要寫出具體值）
+
+### 正確範例
+```python
+# ✅ 正確：從環境變數讀取
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+```
+
+### 錯誤範例
+```python
+# ❌ 錯誤：hardcode 在程式碼中
+API_KEY = "ghp_xxxxx"
+```
+
+### 需要存放在 .env 的項目
+- API Keys (OpenAI, GitHub, etc.)
+- Database passwords
+- SMTP passwords
+- Bot tokens
+- Private keys
+
+---
+
 *最後更新：2026-02-16*
