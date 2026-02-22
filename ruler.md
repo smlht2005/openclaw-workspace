@@ -231,6 +231,34 @@ MM-DD ████████ {N}
 1. **嚴禁 hardcode** - 所有密碼、API Token、私鑰不可寫死在程式碼中
 2. **存放 .env** - 敏感資訊必須存放在 `.env` 檔案
 3. **加入 .gitignore** - `.env` 必須加入 `.gitignore`
+4. **記錄在 ruler/memory** - 註記有哪些敏感資訊（不要寫出具體值）
+
+---
+
+## 🐛 Bug 追蹤規範
+
+### 記錄位置
+- **SQLite**: `data/todos.db` (bugs 表)
+- **JSON 備份**: `bugs/issues.json`
+
+### 寫入格式 (SQLite)
+```python
+cursor.execute('''
+    INSERT INTO bugs (id, type, title, status, priority, severity, description, solution)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+''', (bug_id, 'bug', title, 'open', priority, severity, description, solution))
+```
+
+### Severity 允許值
+- critical, major, minor, trivial
+
+### Bug 狀態
+- open, fixed, pending
+
+### 原則
+1. **嚴禁 hardcode** - 所有密碼、API Token、私鑰不可寫死在程式碼中
+2. **存放 .env** - 敏感資訊必須存放在 `.env` 檔案
+3. **加入 .gitignore** - `.env` 必須加入 `.gitignore`
 4. **記錄在 ruler/memory** - 在 ruler.md 或 memory 註記有哪些敏感資訊（不要寫出具體值）
 
 ### 正確範例
