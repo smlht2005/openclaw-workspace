@@ -1,0 +1,12 @@
+# OpenClaw Assistant Dependencies
+
+# Core Python version
+python>=3.10
+
+# No external dependencies required
+# Uses only standard library:
+# - json
+# - os
+# - subprocess
+# - datetime
+# - pathlib
